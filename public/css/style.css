@@ -1,0 +1,20 @@
+.header {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 2px solid black;
+  padding: 2em;
+}
+
+.header__username {
+  text-align: center;
+  border: 2px solid black;
+  padding: 2px;
+  margin: 0.5em;
+}
+
+.header__logout {
+  border: 2px solid black;
+  padding: 2px;
+  margin: 0.5em;
+}

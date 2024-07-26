@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoices</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/invoices.css" />
+  </head>
+  <body class="invoices">
+    <header class="header">
+      <% if (username) { %>
+      <div class="header__username">
+        <p class="header__username-text"><%= username %></p>
+      </div>
+      <% } %>
+      <form action="/logout" method="GET">
+        <div class="header__logout">
+          <button class="header__logout-button" type="submit">Logout</button>
+        </div>
+      </form>
+    </header>
+    <main class="invoices__main">
+      <h3>Invoices</h3>
+      <table class="invoices__table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Invoice Name</th>
+            <th>Paid Date</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% invoices.forEach(invoice=> { %>
+          <tr>
+            <td>
+              <input
+                type="radio"
+                name="invoiceid"
+                value="<%= invoice.InvoiceId %>"
+                onclick="window.location.href = '/invoice-details/<%= invoice.InvoiceId %>'"
+              />
+            </td>
+            <td><%= invoice.Name%></td>
+            <td><%= invoice.PaidDate%></td>
+            <td><%= invoice.totalAmount %></td>
+          </tr>
+          <%});%>
+        </tbody>
+      </table>
+      <% if (details) { %>
+      <h3>Invoice Lines</h3>
+      <table class="invoices__table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price Per Unit</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% details.forEach(detail => { %>
+          <tr>
+            <td><%= detail.product%></td>
+            <td><%= detail.pricePerUnit%></td>
+            <td><%= detail.quantity %></td>
+            <td><%= detail.totalAmount %></td>
+          </tr>
+          <% });%>
+        </tbody>
+      </table>
+      <% } %>
+    </main>
+  </body>
+</html>

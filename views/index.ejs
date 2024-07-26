@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body class="login">
+    <header class="header">
+      <% if (username) { %>
+      <div class="header__username">
+        <p class="header__username-text"><%= username %></p>
+      </div>
+      <% } %>
+      <form action="/logout" method="GET">
+        <div class="header__logout">
+          <button class="header__logout-button" type="submit">Logout</button>
+        </div>
+      </form>
+    </header>
+    <main>
+      <form class="login__form" id="loginForm" action="/login" method="POST">
+        <label for="username">
+          username:
+          <input
+            class="login__input"
+            type="text"
+            name="username"
+            id="username"
+            autocomplete="username"
+            required
+          />
+        </label>
+        <label for="password">
+          password:
+          <input
+            class="login__input"
+            type="password"
+            name="password"
+            id="password"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+        <div class="login__button-container">
+          <button class="login__button" type="submit">Login</button>
+        </div>
+      </form>
+      <% if (error) {%>
+      <div class="login__error_message">*<%= error %></div>
+      <% }%>
+    </main>
+  </body>
+</html>
